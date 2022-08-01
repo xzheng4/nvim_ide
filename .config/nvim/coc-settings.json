@@ -1,0 +1,47 @@
+{
+    "suggest.floatEnable":true,
+
+    "suggest.floatConfig": {
+        "border": true,
+        "rounded": true,
+        "borderhighlight": "FloatBorder",
+        "highlight": "CocSuggestFloating"
+    },
+    "diagnostic.floatConfig": {
+        "border": true,
+        "rounded": true,
+        "borderhighlight": "FloatBorder",
+        "highlight": "CocFloating",
+        "maxWidth": 120,
+        "focusable": true
+    },
+    "hover.floatConfig": {
+        "border": true,
+        "rounded": true,
+        "borderhighlight": "SpellCap",
+        "highlight": "CocFloating",
+        "maxWidth": 120,
+        "focusable": true
+    },
+    "signature.floatConfig": {
+        "border": true,
+        "rounded": true,
+        "borderhighlight": "Normal",
+        "highlight": "CocFloating",
+        "maxWidth": 120,
+        "focusable": true
+    },
+
+    "dialog.floatHighlight": "Normal",
+    "dialog.floatBorderHighlight": "Normal",
+    "dialog.rounded": true,
+    "notification.border": true,
+
+    "languageserver": {
+        "coc-clangd": {
+            "command": "clangd",
+            "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
+            "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+        }
+    }
+}
