@@ -9,3 +9,7 @@ Download nvim
  ./nvim.appimage
 ```
 
+Install nodejs
+```
+curl -sL install-node.now.sh | bash
+```
