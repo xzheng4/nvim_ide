@@ -33,9 +33,11 @@ call plug#begin("~/.vim/plugged")
  Plug 'hrsh7th/vim-vsnip'
 
  " tab
- Plug 'akinsho/bufferline.nvim'
+ Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 
 call plug#end()
+
+
 
 lua << EOF
 require'nvim-treesitter.configs'.setup {
@@ -68,6 +70,18 @@ vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, s
 
 END
 "nnoremap <C-n> <cmd>NvimTreeToggle<cr>
+
+" In your init.lua or init.vim
+" set termguicolors
+lua << EOF
+require("bufferline").setup{}
+EOF
+" These commands will navigate through buffers in order regardless of which mode you are using
+" e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
+nnoremap <silent><Tab> :BufferLineCycleNext<CR>
+"nnoremap <silent>[b :BufferLineCycleNext<CR>
+"nnoremap <silent>]b :BufferLineCyclePrev<CR>
+
 
 let maplocalleader = "\\"
 " Find files using Telescope command-line sugar.
