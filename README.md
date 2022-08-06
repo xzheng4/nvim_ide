@@ -13,3 +13,7 @@ Install nodejs
 ```
 curl -sL install-node.now.sh | bash
 ```
+
+```
+git clone https://github.com/xzheng4/nvim_ide ~/.config/nvim --depth 1
+```
