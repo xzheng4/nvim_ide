@@ -10,6 +10,10 @@ set hls
 set incsearch
 set ruler
 
+" global configuration
+let maplocalleader = "\\"
+let g:startify_change_to_dir = 0
+
 call plug#begin("~/.vim/plugged")
  Plug 'nvim-lualine/lualine.nvim'
  Plug 'kyazdani42/nvim-web-devicons'
@@ -17,7 +21,6 @@ call plug#begin("~/.vim/plugged")
 
  Plug 'nvim-lua/plenary.nvim'
  Plug 'mhinz/vim-startify'
- "Plug 'neoclide/coc.nvim', {'branch': 'release'}
  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
@@ -33,11 +36,9 @@ call plug#begin("~/.vim/plugged")
  Plug 'hrsh7th/vim-vsnip'
 
  " tab
- " Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
  Plug 'kdheepak/tabline.nvim'
 
 call plug#end()
-
 
 
 lua << EOF
@@ -67,18 +68,11 @@ END
 
 lua << END
 require("nvim-tree").setup()
-vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 -- nnoremap <C-n> <cmd>NvimTreeToggle<cr>
 END
 
-" In your init.lua or init.vim
-" set termguicolors
-" lua << END
-" require('bufferline').setup {}
-"END
-"
-
-lua << end
+lua << END
 
     require'tabline'.setup {
       -- Defaults configuration options
@@ -103,18 +97,9 @@ lua << end
       set sessionoptions+=tabpages,globals " store tabpages and globals in session
     ]]
 
-    vim.api.nvim_set_keymap('n', '<Tab>', ':TablineBufferNext<CR>', { noremap = true, silent = true })
-end
+    vim.keymap.set('n', '<Tab>', ':TablineBufferNext<CR>', { noremap = true, silent = true })
+END
 
-
-" These commands will navigate through buffers in order regardless of which mode you are using
-" e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
-"nnoremap <silent><Tab> :BufferLineCycleNext<CR>
-"nnoremap <silent>[b :BufferLineCycleNext<CR>
-"nnoremap <silent>]b :BufferLineCyclePrev<CR>
-
-
-let maplocalleader = "\\"
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -122,8 +107,6 @@ nnoremap <leader>fv <cmd>Telescope grep_string<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-
-let g:startify_change_to_dir = 0
 
 "source ~/.config/nvim/coc.vim
 source ~/.config/nvim/nvim-cmp.vim
