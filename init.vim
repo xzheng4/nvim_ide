@@ -33,7 +33,8 @@ call plug#begin("~/.vim/plugged")
  Plug 'hrsh7th/vim-vsnip'
 
  " tab
- Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+ " Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+ Plug 'kdheepak/tabline.nvim'
 
 call plug#end()
 
@@ -51,7 +52,6 @@ require'nvim-treesitter.configs'.setup {
   },
 
 }
-
 EOF
 
 lua << END
@@ -59,7 +59,8 @@ lua << END
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'gruvbox_light',
+    -- theme = 'gruvbox_light',
+    theme = 'onedark',
     },
 }
 END
@@ -67,18 +68,48 @@ END
 lua << END
 require("nvim-tree").setup()
 vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-
+-- nnoremap <C-n> <cmd>NvimTreeToggle<cr>
 END
-"nnoremap <C-n> <cmd>NvimTreeToggle<cr>
 
 " In your init.lua or init.vim
 " set termguicolors
-lua << EOF
-require("bufferline").setup{}
-EOF
+" lua << END
+" require('bufferline').setup {}
+"END
+"
+
+lua << end
+
+    require'tabline'.setup {
+      -- Defaults configuration options
+      enable = true,
+      options = {
+      -- If lualine is installed tabline will use separators configured in lualine by default.
+      -- These options can be used to override those settings.
+        section_separators = {'', ''},
+        component_separators = {'', ''},
+        max_bufferline_percent = 66, -- set to nil by default, and it uses vim.o.columns * 2/3
+        show_tabs_always = false, -- this shows tabs only when there are more than one tab or if the first tab is named
+        show_devicons = true, -- this shows devicons in buffer section
+        show_bufnr = false, -- this appends [bufnr] to buffer section,
+        show_filename_only = false, -- shows base filename only instead of relative path in filename
+        modified_icon = "+ ", -- change the default modified icon
+        modified_italic = false, -- set to true by default; this determines whether the filename turns italic if modified
+        show_tabs_only = false, -- this shows only tabs instead of tabs + buffers
+      }
+    }
+    vim.cmd[[
+      set guioptions-=e " Use showtabline in gui vim
+      set sessionoptions+=tabpages,globals " store tabpages and globals in session
+    ]]
+
+    vim.api.nvim_set_keymap('n', '<Tab>', ':TablineBufferNext<CR>', { noremap = true, silent = true })
+end
+
+
 " These commands will navigate through buffers in order regardless of which mode you are using
 " e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
-nnoremap <silent><Tab> :BufferLineCycleNext<CR>
+"nnoremap <silent><Tab> :BufferLineCycleNext<CR>
 "nnoremap <silent>[b :BufferLineCycleNext<CR>
 "nnoremap <silent>]b :BufferLineCyclePrev<CR>
 
