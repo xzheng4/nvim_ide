@@ -11,7 +11,7 @@ set incsearch
 set ruler
 
 " global configuration
-let maplocalleader = "\\"
+let g:mapleader = " "
 let g:startify_change_to_dir = 0
 
 call plug#begin("~/.vim/plugged")
