@@ -17,3 +17,9 @@ curl -sL install-node.now.sh | bash
 ```
 git clone https://github.com/xzheng4/nvim_ide ~/.config/nvim --depth 1
 ```
+
+Install a language server
+```
+npm i -g pyright
+apt install clangd
+```
